@@ -1,0 +1,12 @@
+core:
+  version: 0.0.1
+  tags:
+    - mytag
+
+defaults:
+  - data: sketch_points
+  - hydra: default
+  - logging: default
+  - model: sketchsampler
+  - optim: sketchsampler
+  - train: sketchsampler

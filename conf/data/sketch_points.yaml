@@ -1,0 +1,42 @@
+# @package _group_
+
+datamodule:
+  _target_: data.sketch_points.datamodule.DataModule
+
+  datasets:
+    train:
+      _target_: data.sketch_points.dataset.DataSet
+      name: SketchShapeNet_TRAIN
+      path_sketch: ${env:SKETCH_PATH}
+      path_pt: ${env:SHAPENET_PT_PATH}
+      path_camera: ${env:SHAPENET_CAM_PATH}
+      path_density: ${env:SHAPENET_DENSITY_PATH}
+      file_list: ${env:TRAIN_LIST}
+
+    val:
+      - _target_: data.sketch_points.dataset.DataSet
+        name: SketchShapeNet_VAL
+        path_sketch: ${env:SKETCH_PATH}
+        path_pt: ${env:SHAPENET_PT_PATH}
+        path_camera: ${env:SHAPENET_CAM_PATH}
+        path_density: ${env:SHAPENET_DENSITY_PATH}
+        file_list: ${env:TEST_LIST}
+
+    test:
+      - _target_: data.sketch_points.dataset.DataSet
+        name: SketchShapeNet_TEST
+        path_sketch: ${env:SKETCH_PATH}
+        path_pt: ${env:SHAPENET_PT_PATH}
+        path_camera: ${env:SHAPENET_CAM_PATH}
+        path_density: ${env:SHAPENET_DENSITY_PATH}
+        file_list: ${env:TEST_LIST}
+
+  num_workers:
+    train: 3
+    val: 3
+    test: 3
+
+  batch_size:
+    train: 4
+    val: 4
+    test: 4

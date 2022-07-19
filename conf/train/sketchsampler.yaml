@@ -1,0 +1,33 @@
+# @package _group_
+
+# reproducibility
+deterministic: False
+random_seed: 36
+
+# training
+
+pl_trainer:
+  fast_dev_run: False # Enable this for debug purposes
+  gpus: [ 0,1,2,3,4,5,6,7 ]
+  accelerator: 'ddp'
+  auto_select_gpus: True
+  precision: 32
+  max_epochs: 30
+  min_epochs: 30
+  accumulate_grad_batches: 1
+  num_sanity_val_steps: 2
+  terminate_on_nan: True
+  gradient_clip_val: 10.0
+
+monitor_metric: 'val_loss'
+monitor_metric_mode: 'min'
+
+early_stopping:
+  patience: 56
+
+model_checkpoints:
+  save_top_k: 2
+
+n_points: 16384
+lambda1: 1
+lambda2: 1e4
